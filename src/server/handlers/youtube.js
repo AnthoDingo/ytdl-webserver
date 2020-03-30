@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const ffmpeg = require('fluent-ffmpeg')
-const youtubeDl = require('@microlink/youtube-dl')
+const youtubeDl = require('youtube-dl')
 
 function exists (filename, cb) {
   fs.access(filename, fs.F_OK, (err) => {
@@ -19,46 +19,64 @@ function download (url, options = {
 }) {
   return new Promise((resolve, reject) => {
     let format = 'mp4'
+    let dlFormat = 'bestvideo[ext=mp4]+bestaudio[ext=m4a]'
+
     if (options.audioOnly) {
       format = 'mp3'
+      dlFormat = 'bestaudio[ext=m4a]'
     }
 
-    // TODO Add proper support for options
-    const video = youtubeDl(url,
-      // Optional arguments passed to youtube-dl.
-      ['--format=18'],
-      // Additional options can be given for calling `child_process.execFile()`.
-      { cwd: __dirname, maxBuffer: Infinity })
+    console.log(format)
+    console.log(dlFormat)
 
-    // Will be called when the download starts.
-    video.on('info', info => {
+    youtubeDl.getInfo(url, function (err, info) {
+      'use strict'
+      if (err) {
+        throw err
+      }
+
       let filename = info._filename
       filename = filename
         .replace('.mp4', '')
         .substring(0, filename.length - 16)
 
-      const filePath = path.join(options.path, `${filename}.${format}`)
+      const dlPath = path.join(options.path, filename)
 
-      exists(filePath, (doesExist) => {
-        const videoObj = {
-          name: filename,
-          url,
-          downloading: false,
-          format
-        }
+      youtubeDl.exec(
+        url,
+        ['-f', dlFormat, '-o', dlPath],
+        { cwd: __dirname, maxBuffer: Infinity },
+        function exec (err, output) {
+            'use strict'
+            if (err) {
+              throw err
+            }
 
-        if (!doesExist) {
-          // Convert to audio
-          ffmpeg({ source: video })
-            .on('end', () => {
-              resolve(videoObj)
-            })
-            .toFormat(format)
-            .save(filePath)
-        } else {
-          resolve(videoObj)
+            const filePath = path.join(options.path, `${filename}.${format}`)
+
+            const videoObj = {
+              name: filename,
+              url,
+              downloading: false,
+              format
+            }
+
+            if(!options.audioOnly){
+              fs.rename(dlPath, filePath, () => {
+                resolve(videoObj)
+              })
+            } else {
+              ffmpeg({ source: dlPath })
+                  .on('end', () => {
+                    fs.unlink(dlPath, () => {
+                      resolve(videoObj)
+                    })
+                  })
+                  .toFormat(format)
+                  .save(filePath)
+            }
         }
-      })
+    )
     })
   })
 }
