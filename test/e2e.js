@@ -4,7 +4,8 @@ const http = require('http')
 const querystring = require('querystring')
 
 const postData = querystring.stringify({
-  'url': 'https://www.youtube.com/watch?v=qNf9nzvnd1k'
+  'url': 'https://www.youtube.com/watch?v=qNf9nzvnd1k',
+  'audio': 'false'
 })
 
 const req = http.request(
