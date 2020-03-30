@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import '../stylesheets/DownloadList.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'  
+import { faVideo, faMusic, faCloudDownloadAlt } from '@fortawesome/fontawesome-free-solid'
 
 class DownloadList extends Component {
+  
   componentDidMount () {
   }
 
@@ -11,6 +14,11 @@ class DownloadList extends Component {
       <ul className='downloadList'>
         {this.props.videos.map((video, index) =>
           <li key={index} className='downloadList__item'>
+            <span className='video__format'>
+            {video.format == 'mp3'
+              ? <FontAwesomeIcon icon={faMusic} /> : <FontAwesomeIcon icon={faVideo} />
+            }
+            </span>
             <span className='video__name'>{video.name}</span>
             {video.downloading
               ? (
@@ -26,7 +34,9 @@ class DownloadList extends Component {
                     data-orig={video.url}
                     href={`/request/${video.name}.${video.format}`}
                     download={`${video.name}.${video.format}`}
-                  >Download</a>
+                  >
+                    <FontAwesomeIcon icon={faCloudDownloadAlt} size="lg" />
+                  </a>
                 </span>
               )
             }

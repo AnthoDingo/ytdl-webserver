@@ -4,7 +4,7 @@
   @include makePanel();
   background: $background_secondary;
   display: flex;
-  flex: 0 1 600px;
+  flex: 0 1 680px;
   flex-wrap: wrap;
   list-style-type: none;
   margin-top: 20px;
@@ -47,6 +47,10 @@
 }
 
 .video {
+  &__format {
+    margin-right: 10px;
+  }
+
   &__name {
     color: $text-secondary;
     word-break: break-all;

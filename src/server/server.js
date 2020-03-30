@@ -35,9 +35,10 @@ const provision = async () => {
     path: '/download',
     handler: (request) => {
       const url = request.payload.url
+      const audio = (request.payload.audio == 'true')
       const options = {
         path: path.join(__dirname, '../../public/temp'),
-        audioOnly: true
+        audioOnly: audio
       }
 
       mkdirp(options.path, err => {

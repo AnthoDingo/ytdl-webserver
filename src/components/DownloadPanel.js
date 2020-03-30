@@ -41,7 +41,9 @@ class DownloadPanel extends Component {
   handleSubmit (e) {
     e.preventDefault()
     const urlInput = document.querySelector('.downloadForm__input')
+    const audioInput = document.querySelector('.downloadForm__checkbox')
     const url = urlInput.value
+    const audio = audioInput.checked
 
     if (url.length === 0) {
       return
@@ -66,14 +68,15 @@ class DownloadPanel extends Component {
     this.setState({ videos: [{
       name: url,
       url,
+      format: (audio ? 'mp3' : 'mp4'),
       downloading: true
     }, ...videos] })
 
-    post('/download', `url=${url}`).then(newVideo => {
+    post('/download', `url=${url}&audio=${audio}`).then(newVideo => {
       videos = this.state.videos
 
       const updatedVideos = videos.map(video =>
-        (video.url === newVideo.url ? Object.assign({}, video, newVideo) : video)
+        ((video.url === newVideo.url) && (video.format === newVideo.format) ? Object.assign({}, video, newVideo) : video)
       )
 
       this.setState({ videos: updatedVideos })

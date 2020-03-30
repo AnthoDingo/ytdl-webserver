@@ -21,6 +21,33 @@
     }
   }
 
+  &__checkbox {
+    /*
+    @include makePanel();
+    appearance: none;
+    flex: 0 1 0px;
+    font-size: 16px;
+    height: 20px;
+    margin-right: 5px;
+    padding: 10px;
+  */
+    &__label {
+      @include makePanel();
+      appearance: none;
+      flex: 0 1 0px;
+      font-size: 12px;
+      height: 30px;
+      margin-right: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    &--error {
+      border: 1px solid $accent_primary;
+      color: $accent_primary;
+    }
+  }
+
   &__btn {
     @include makePanel();
     background-color: $accent_primary;
