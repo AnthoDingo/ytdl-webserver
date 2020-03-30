@@ -1,13 +1,14 @@
 <h1 align="center">
   📻 ytdl-webserver
 
-  <a href="https://travis-ci.com/Algram/ytdl-webserver">
-    <img alt="Builds" src="https://travis-ci.com/Algram/ytdl-webserver.svg?branch=master">
+  <a href="https://travis-ci.com/AnthoDingo/ytdl-webserver">
+    <img alt="Builds" src="https://travis-ci.com/AnthoDingo/ytdl-webserver.svg?branch=master">
   </a>
 </h1>
 
 <p align="center">
   Webserver for downloading youtube videos. Ready for docker.
+  <a href="https://github.com/Algram/ytdl-webserver">Original project : Algram/ytdl-webserver</a>
 </p>
 
 ## Demo
@@ -24,7 +25,7 @@ npm install && npm start
 ### As a docker image
 #### Basic
 ```
-docker run --name ytdl -d -p 3000:3000 algram/ytdl-webserver
+docker run --name ytdl -d -p 3000:3000 anthodingo/ytdl-webserver
 ```
 
 #### Advanced
