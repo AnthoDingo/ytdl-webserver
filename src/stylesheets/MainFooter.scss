@@ -1,0 +1,31 @@
+@import "./shared";
+
+.footer {
+  @include makePanel();
+  position:absolute;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  color: #d3d0c8;
+  text-align: right;
+  font-size: small;
+
+  a{
+    margin-right: 10px;
+  }
+
+  &__clear {
+    background: $background_secondary;
+    border-top: 1px solid $background_primary;
+    color: $text-secondary;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+
+    &:hover {
+      background: darken($background_secondary, 2%);
+      cursor: pointer;
+    }
+  }
+
+}

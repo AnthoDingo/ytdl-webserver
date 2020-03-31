@@ -26,9 +26,6 @@ function download (url, options = {
       dlFormat = 'bestaudio[ext=m4a]'
     }
 
-    console.log(format)
-    console.log(dlFormat)
-
     youtubeDl.getInfo(url, function (err, info) {
       'use strict'
       if (err) {
@@ -76,7 +73,7 @@ function download (url, options = {
                   .save(filePath)
             }
         }
-    )
+      )
     })
   })
 }
