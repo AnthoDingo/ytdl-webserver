@@ -38,7 +38,8 @@ const provision = async () => {
       const audio = (request.payload.audio == 'true')
       const options = {
         path: path.join(__dirname, '../../public/temp'),
-        audioOnly: audio
+        audioOnly: audio,
+        maxDays: process.env.EXPIRATION || 7
       }
 
       fs.access(options.path, fs.constants.F_OK, (err) => {
@@ -67,6 +68,7 @@ const provision = async () => {
   await server.start()
 
   console.log('Server running at:', server.info.uri)
+  console.log('Datas delete after : ', process.env.EXPIRATION || 7)
 }
 
 provision()

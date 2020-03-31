@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs')
+const moment = require('moment');
 const ffmpeg = require('fluent-ffmpeg')
 const youtubeDl = require('youtube-dl')
 
@@ -15,7 +16,8 @@ function exists (filename, cb) {
 
 function download (url, options = {
   path: 'downloads',
-  audioOnly: false
+  audioOnly: false,
+  maxDays: 7
 }) {
   return new Promise((resolve, reject) => {
     let format = 'mp4'
@@ -44,39 +46,36 @@ function download (url, options = {
         ['-f', dlFormat, '-o', dlPath],
         { cwd: __dirname, maxBuffer: Infinity },
         function exec (err, output) {
-            'use strict'
-            if (err) {
-              throw err
-            }
+          'use strict'
+          if (err) {
+            throw err
+          }
 
-            const filePath = path.join(options.path, `${filename}.${format}`)
+          const filePath = path.join(options.path, `${filename}.${format}`)
+          const expirationDate = moment().add(options.maxDays, 'days')
 
-            let expirationDate = new Date()
-            const maxDays = process.env.EXPIRATION || 1
-            expirationDate.setDate(expirationDate.getDate() + maxDays)
+          const videoObj = {
+            name: filename,
+            url,
+            downloading: false,
+            format,
+            expiration: expirationDate.toJSON()
+          }
 
-            const videoObj = {
-              name: filename,
-              url,
-              downloading: false,
-              format,
-              expiration: expirationDate.toJSON()
-            }
-
-            if(!options.audioOnly){
-              fs.rename(dlPath, filePath, () => {
-                resolve(videoObj)
+          if(!options.audioOnly){
+            fs.rename(dlPath, filePath, () => {
+              resolve(videoObj)
+            })
+          } else {
+            ffmpeg({ source: dlPath })
+              .on('end', () => {
+                fs.unlink(dlPath, () => {
+                  resolve(videoObj)
+                })
               })
-            } else {
-              ffmpeg({ source: dlPath })
-                  .on('end', () => {
-                    fs.unlink(dlPath, () => {
-                      resolve(videoObj)
-                    })
-                  })
-                  .toFormat(format)
-                  .save(filePath)
-            }
+              .toFormat(format)
+              .save(filePath)
+          }
         }
       )
     })
