@@ -1,9 +1,8 @@
 <h1 align="center">
   📻 ytdl-webserver
 
-  <a href="https://travis-ci.com/AnthoDingo/ytdl-webserver">
-    <img alt="Builds" src="https://travis-ci.com/AnthoDingo/ytdl-webserver.svg?branch=master">
-  </a>
+  [![Build Status](https://img.shields.io/travis/com/AnthoDingo/ytdl-webserver/master?label=master)](https://travis-ci.com/AnthoDingo/ytdl-webserver)
+  [![Build Status](https://img.shields.io/travis/com/AnthoDingo/ytdl-webserver/dev?label=dev )](https://travis-ci.com/AnthoDingo/ytdl-webserver)
 </h1>
 
 <p align="center">
