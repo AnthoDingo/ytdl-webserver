@@ -26,7 +26,7 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@hapi/hapi": "^18.4.1",
     "@hapi/inert": "^5.2.2",
-    "fluent-ffmpeg": "git+https://github.com/AnthoDingo/node-fluent-ffmpeg#v2.1.3",
+    "fluent-ffmpeg": "AnthoDingo/node-fluent-ffmpeg.git#v2.1.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

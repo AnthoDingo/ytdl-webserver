@@ -3,7 +3,7 @@ FROM node:dubnium-stretch-slim
 WORKDIR /home/app
 
 RUN apt update \
-    && apt install -y curl ffmpeg build-essential \
+    && apt install -y curl ffmpeg build-essential git \
     && rm -rf /var/lib/apt/lists/*
 
 # This is on a separate line because youtube-dl needs to be frequently updated
