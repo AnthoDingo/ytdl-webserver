@@ -52,7 +52,8 @@ function download (url, options = {
             const filePath = path.join(options.path, `${filename}.${format}`)
 
             let expirationDate = new Date()
-            expirationDate.setDate(expirationDate.getDate() + (process.env.EXPIRATION || 7))
+            const maxDays = process.env.EXPIRATION || 1
+            expirationDate.setDate(expirationDate.getDate() + maxDays)
 
             const videoObj = {
               name: filename,
