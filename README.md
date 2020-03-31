@@ -1,9 +1,14 @@
 <h1 align="center">
   📻 ytdl-webserver
 
-  <a href="https://travis-ci.com/AnthoDingo/ytdl-webserver">
-    <img alt="Builds" src="https://travis-ci.com/AnthoDingo/ytdl-webserver.svg?branch=master">
-  </a>
+  [![Build Status](https://img.shields.io/travis/com/AnthoDingo/ytdl-webserver/master?label=master)](https://travis-ci.com/AnthoDingo/ytdl-webserver)
+  [![Build Status](https://img.shields.io/travis/com/AnthoDingo/ytdl-webserver/dev?label=dev )](https://travis-ci.com/AnthoDingo/ytdl-webserver)
+
+  ![Docker Pulls](https://img.shields.io/docker/pulls/anthodingo/ytdl-webserver)
+  ![Docker Stars](https://img.shields.io/docker/stars/anthodingo/ytdl-webserver)
+  ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/anthodingo/ytdl-webserver/latest?label=latest)
+  ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/anthodingo/ytdl-webserver/dev?label=dev)
+
 </h1>
 
 <p align="center">
@@ -37,7 +42,14 @@ docker run --name ytdl -v /tmp/videos:/home/app/public/temp -p 3000:3000 -d <you
 ```
 In the example above, we are creating a directory under /tmp to hold the videos and then specifying a host mount to the container that corresponds to that new directory.  You may update this to any path on your host or use a different existing path if you would prefer. The host mount also improves performance as the downloaded files are written to the native host filesystem bypassing the CoW filesystem of the container.
 
+### Environment
 
+By default, all link will expire 7 days after download and datas will remove. You can fix it with environment variable.
+```
+EXPIRATION=7
+```
+
+Value is integer (number of days)
 ## Development
 To start contributing you only have to run one command.
 ``` bash
