@@ -51,11 +51,15 @@ function download (url, options = {
 
             const filePath = path.join(options.path, `${filename}.${format}`)
 
+            let expirationDate = new Date()
+            expirationDate.setDate(expirationDate.getDate() + (process.env.EXPIRATION || 7))
+
             const videoObj = {
               name: filename,
               url,
               downloading: false,
-              format
+              format,
+              expiration: expirationDate.toJSON()
             }
 
             if(!options.audioOnly){

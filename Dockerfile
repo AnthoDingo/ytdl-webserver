@@ -15,9 +15,12 @@ RUN apt update \
 COPY package.json package-lock.json ./
 RUN npm ci
 
+ADD src/scripts/ytdl-cleaner /etc/cron.daily/ytdl-cleaner
 COPY . ./
 RUN mkdir -p public/temp \
-    && npm run build
+    && npm run build \
+    && chmod 755 /etc/cron.daily/ytdl-cleaner
 
+ENV EXPIRATION 7
 EXPOSE 3000
 CMD [ "npm", "start" ]

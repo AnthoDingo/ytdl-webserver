@@ -36,6 +36,14 @@ docker run --name ytdl -v /tmp/videos:/home/app/public/temp -p 3000:3000 -d <you
 ```
 In the example above, we are creating a directory under /tmp to hold the videos and then specifying a host mount to the container that corresponds to that new directory.  You may update this to any path on your host or use a different existing path if you would prefer. The host mount also improves performance as the downloaded files are written to the native host filesystem bypassing the CoW filesystem of the container.
 
+### Environment
+
+By default, all link will expire 7 days after download. You can fix it with environment variable.
+```
+EXPIRATION=7
+```
+
+Value is days
 
 ## Development
 To start contributing you only have to run one command.
