@@ -1,0 +1,3 @@
+#!/bin/bash
+
+find "/home/app/public/temp" -type f \( -iname \*.mp4 -o -iname \*.mp3 \) -mtime +${EXPIRATION} -exec rm {} \;

@@ -1,6 +1,6 @@
 const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert')
-const mkdirp = require('mkdirp')
+const fs = require('fs');
 const path = require('path')
 const youtube = require('./handlers/youtube')
 
@@ -41,12 +41,16 @@ const provision = async () => {
         audioOnly: audio
       }
 
-      mkdirp(options.path, err => {
+      fs.access(options.path, fs.constants.F_OK, (err) => {
         if (err) {
-          throw err
+          fs.mkdir(options.path, { recursive: true }, (error) => {
+            if (error) {
+              throw error
+            }
+          })
         }
       })
-
+    
       return youtube.download(url, options)
     }
   })

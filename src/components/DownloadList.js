@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import '../stylesheets/DownloadList.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'  
-import { faVideo, faMusic, faCloudDownloadAlt } from '@fortawesome/fontawesome-free-solid'
+import { faVideo, faMusic, faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons'
 
 class DownloadList extends Component {
   

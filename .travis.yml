@@ -12,4 +12,6 @@ deploy:
   provider: script
   script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && docker push $DOCKER_TAG
   on:
-    branch: master
+    branch: 
+      - master
+      - dev

@@ -14,8 +14,17 @@ class DownloadPanel extends Component {
     super(props)
 
     console.log(localStorage.getItem('videos'))
-    const storedVideos = localStorage.getItem('videos')
-    this.state = { videos: storedVideos || [] }
+    let storedVideos = localStorage.getItem('videos') || []
+    
+    // Delete expired download
+    const currentDate = new Date()
+    storedVideos = storedVideos.filter(video => {
+      const expirationDate = new Date(video.expiration)
+      return expirationDate > currentDate
+    })
+    localStorage.setItem('videos', storedVideos)
+    
+    this.state = { videos: storedVideos }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClearClick = this.handleClearClick.bind(this)
     this.handleVideoDownloadClick = this.handleVideoDownloadClick.bind(this)

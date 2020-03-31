@@ -26,9 +26,6 @@ function download (url, options = {
       dlFormat = 'bestaudio[ext=m4a]'
     }
 
-    console.log(format)
-    console.log(dlFormat)
-
     youtubeDl.getInfo(url, function (err, info) {
       'use strict'
       if (err) {
@@ -54,11 +51,16 @@ function download (url, options = {
 
             const filePath = path.join(options.path, `${filename}.${format}`)
 
+            let expirationDate = new Date()
+            const maxDays = process.env.EXPIRATION || 1
+            expirationDate.setDate(expirationDate.getDate() + maxDays)
+
             const videoObj = {
               name: filename,
               url,
               downloading: false,
-              format
+              format,
+              expiration: expirationDate.toJSON()
             }
 
             if(!options.audioOnly){
@@ -76,7 +78,7 @@ function download (url, options = {
                   .save(filePath)
             }
         }
-    )
+      )
     })
   })
 }
