@@ -1,13 +1,13 @@
 <h1 align="center">
   📻 ytdl-webserver
 
-  [![Build Status](https://img.shields.io/travis/com/AnthoDingo/ytdl-webserver/master?label=master)](https://travis-ci.com/AnthoDingo/ytdl-webserver)
-  [![Build Status](https://img.shields.io/travis/com/AnthoDingo/ytdl-webserver/dev?label=dev )](https://travis-ci.com/AnthoDingo/ytdl-webserver)
+  [![Build Status](https://badgen.net/travis/AnthoDingo/ytdl-webserver/master?icon=travis&label=master)](https://travis-ci.com/AnthoDingo/ytdl-webserver)
+  [![Build Status](https://badgen.net/travis/AnthoDingo/ytdl-webserver/dev?icon=travis&label=dev )](https://travis-ci.com/AnthoDingo/ytdl-webserver)
 
-  ![Docker Pulls](https://img.shields.io/docker/pulls/anthodingo/ytdl-webserver)
-  ![Docker Stars](https://img.shields.io/docker/stars/anthodingo/ytdl-webserver)
-  ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/anthodingo/ytdl-webserver/latest?label=latest)
-  ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/anthodingo/ytdl-webserver/dev?label=dev)
+  [![Docker Pulls](https://badgen.net/docker/pulls/anthodingo/ytdl-webserver?icon=docker&label=pulls)](https://hub.docker.com/r/anthodingo/ytdl-webserver)
+  [![Docker Stars](https://badgen.net/docker/stars/anthodingo/ytdl-webserver?icon=docker&label=stars)](https://hub.docker.com/r/anthodingo/ytdl-webserver)
+  [![Docker Image Size (tag)](https://badgen.net/docker/size/anthodingo/ytdl-webserver/latest?icon=docker&label=latest)](https://hub.docker.com/r/anthodingo/ytdl-webserver/tags?page=1&name=latest)
+  [![Docker Image Size (tag)](https://badgen.net/docker/size/anthodingo/ytdl-webserver/dev?icon=docker&label=dev)](https://hub.docker.com/r/anthodingo/ytdl-webserver/tags?page=1&name=dev)
 
 </h1>
 
